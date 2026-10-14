@@ -46,6 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentLang = 'en';
   let customWeights = loadWeights();
 
+  // Quiz state (must be declared before initQuiz() runs below)
+  let quizState = {
+    questions: [],
+    currentIndex: 0,
+    score: 0,
+    isAnswered: false
+  };
+
   // Initialize Theme & Lang
   initTheme();
 
@@ -910,13 +918,6 @@ ${redFlags || 'No overt red flags detected.'}
   }
 
   // Quiz Game Logic
-  let quizState = {
-    questions: [],
-    currentIndex: 0,
-    score: 0,
-    isAnswered: false
-  };
-
   function initQuiz() {
     quizState.questions = [...SAMPLE_MESSAGES].sort(() => Math.random() - 0.5);
     quizState.currentIndex = 0;
